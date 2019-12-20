@@ -1,0 +1,258 @@
+set nocompatible              " be iMproved, required
+set tabstop=2
+set shiftwidth=2
+set visualbell
+
+" set the runtime path to include Vundle and initialize
+ set path+=**
+ set wildmenu
+
+" set the runtime path to include Vundle and initialize
+ set rtp+=~/.vim/bundle/Vundle.vim
+ call vundle#begin()
+" " let Vundle manage Vundle, required
+ Plugin 'VundleVim/Vundle.vim'
+" " ----- Making Vim look good ---------------------------------
+"Plugin 'altercation/vim-colors-solarized'
+ Plugin 'tomasr/molokai'
+ Plugin 'flazz/vim-colorschemes'
+ Plugin 'vim-airline/vim-airline'
+ Plugin 'vim-airline/vim-airline-themes'
+" " ----- Vim as a programmer's text editor -----------------------------
+ Plugin 'scrooloose/nerdtree'
+ Plugin 'jistr/vim-nerdtree-tabs'
+ Plugin 'vim-syntastic/syntastic'
+ "Plugin 'vim-scripts/Conque-GDB'
+ Plugin 'mediawiki.vim'
+ Bundle 'vim-ruby/vim-ruby'
+ Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+ Plugin 'davidhalter/jedi-vim'
+"Plugin 'rip-rip/clang_complete'
+ Plugin 'plytophogy/vim-virtualenv'
+ Plugin 'Chiel92/vim-autoformat'
+ Plugin 'xolox/vim-misc'
+ Plugin 'xolox/vim-easytags'
+ Plugin 'majutsushi/tagbar'
+ "Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'vim-scripts/a.vim'
+"
+" Plugin 'Valloric/YouCompleteMe'
+ Plugin 'wincent/command-t'
+"
+" " ----- man pages, tmux -----------------------------------------------
+ Plugin 'jez/vim-superman'
+ Plugin 'christoomey/vim-tmux-navigator'
+"
+" "------- Git ------
+ Plugin 'airblade/vim-gitgutter'
+ Plugin 'tpope/vim-fugitive'
+"
+
+call vundle#end()
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+
+colorscheme abra
+
+set number
+set relativenumber
+
+set clipboard=unnamed
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+
+syntax enable             " Enable syntax highlighting
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+autocmd FileType perl nnoremap <buffer> <F8> :exec '!clear; perl'
+autocmd FileType python nnoremap <buffer> <F2> :exec '!clear; python'
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+"python with virtualenv support
+"py << EOF
+"import os
+"#import sys
+"#if 'VIRTUAL_ENV' in os.environ:
+"#  project_base_dir = os.environ['VIRTUAL_ENV']
+"#  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"#  execfile(activate_this, dict(__file__=activate_this))
+"
+"
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" " ----- Other text editing features -----------------------------------
+" Plugin 'Raimondi/delimitMate'
+"
+" " The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+" " plugin on GitHub repo
+" "Plugin 'tpope/vim-fugitive'
+" "Plugin 'Valloric/YouCompleteMe'
+" "Plugin 'wincent/command-t'
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" " Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" 		set tags=./tags;,~/.vimtags
+ 		"  " Sensible defaults
+" 		let g:easytags_events = ['BufReadPost', 'BufWritePost']
+" 		let g:easytags_async = 1
+" 		let g:easytags_dynamic_files = 2
+" 		let g:easytags_resolve_links = 1
+" 		let g:easytags_suppress_ctags_warning = 1
+" 		"
+ 		"  " ----- majutsushi/tagbar settings -----
+ 		"  " Open/close tagbar with \1 (One)
+" 		nmap <silent> <leader>1 :TagbarToggle<CR>
+" 		" Uncomment to open tagbar automatically whenever possible
+" 		"autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+
+" 		" ----- airblade/vim-gitgutter settings -----
+  		" In vim-airline, only display "hunks" if the diff is non-zero
+" 		let g:airline#extensions#hunks#non_zero_only = 1
+"
+"
+" 		"------------clang-complete-------------
+ 		"let g:clang_library_path='/usr/lib64/llvm/libclang.so' "path
+" 		directly to the library file
+"
+" 		"--------------------YCM----------------
+" 		"let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py" 
+" 		"let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'python':1
+" 		}
+" 		"autocmd FileType c,cpp,python let g:ycm_global_ycm_extra_conf
+" 		= "~/.ycm_extra_conf.py"
+" 		"autocmd FileType c,cpp,python let
+" 		g:ycm_collect_identifiers_from_tags_files = 1
+" 		"autocmd FileType c,cpp,python let g:ycm_complete_in_comments
+" 		= 0
+" 		"autocmd FileType c,cpp,python let g:ycm_complete_in_strings =
+" 		0
+" 		"autocmd FileType c,cpp,python let g:ycm_confirm_extra_conf =
+" 		0
+"
+" 		"--------------------AutoFormat----------------
+" 		"let g:autoformat_autoindent = 0
+" 		"let g:autoformat_retab = 0
+" 		"let g:autoformat_remove_trailing_spaces = 0
+" 		noremap <F3> :Autoformat<CR>
+"
+"
+" 		" ----- Raimondi/delimitMate settings -----
+" 		let delimitMate_expand_cr = 1
+" 		augroup mydelimitMate
+" 			au!
+" 				au FileType markdown let
+" 				b:delimitMate_nesting_quotes = ["`"]
+" 					au FileType tex let
+" 					b:delimitMate_quotes = ""
+" 						au FileType tex let
+" 						b:delimitMate_matchpairs =
+" 						"(:),[:],{:},`:'"
+" 							au FileType python let
+" 							b:delimitMate_nesting_quotes
+" 							= ['"', "'"]
+" 							augroup END
+"
+"
+" 							" -----
+" 							jez/vim-superman
+" 							settings -----
+" 							" better man page
+" 							support
+" 							noremap K :SuperMan
+" 							<cword><CR>
+"
+"
+" 							"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 							" General Setup
+" 							"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 							" allow backspacing
+" 							over everything in
+" 							insert mode
+" 							set
+ 							"backspace=indent,eol,start
+"
+" 							set history=1000
+" 							" keep 1000 lines of
+" 							command line history
+" 							set number
+" 							" line numbers
+" 							set ruler
+" 							" show the cursor
+" 							position all the time
+" 							set showcmd
+" 							" display incomplete
+" 							commands
+" 							set incsearch
+" 							" do incremental
+" 							searching
+" 							set linebreak
+" 							" wrap lines on 'word'
+" 							boundaries
+" 							set scrolloff=3
+" 							" don't let the cursor
+" 							touch the edge of the
+" 							viewport
+" 							set splitright
+" 							" Vertical splits use
+" 							right half of screen
+" 							set timeoutlen=100
+" 							" Lower ^[ timeout
+" 							set fillchars=fold:\ ,
+" 							" get rid of obnoxious
+" 							'-' characters in
+" 							folds
+"
+" 							hi clear SignColumn
+" 							" We need this for
+" 							plugins like Syntastic
+" 							and vim-gitgutter
+" 							which put symbols in
+" 							the sign column.
+"
